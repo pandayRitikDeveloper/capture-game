@@ -1,0 +1,49 @@
+<div class="container">
+  <h2>Select City and Vehicle for Cops</h2>
+  <div *ngFor="let cop of cops">
+    <mat-card>
+      <div class="image-container">
+        <div class="selection-details">
+          <mat-card-header>
+            <mat-card-title>{{ cop.name }}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image [src]="cop.image" alt="Cop Image" />
+        </div>
+        <div class="selection-details">
+          <mat-card-header>
+            <mat-card-title>{{ cityName }}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image [src]="cityImage" alt="Cop Image" />
+        </div>
+        <div class="selection-details">
+          <mat-card-header>
+            <mat-card-title>{{ cop.name }}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image [src]="cop.image" alt="Cop Image" />
+        </div>
+      </div>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Select City</mat-label>
+          <mat-select
+            [(ngModel)]="city"
+            (selectionChange)="selectCity(cop.name, $event.value)"
+          >
+            <mat-option *ngFor="let city of cities" [value]="city.name">
+              {{ city.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Select Vehicle</mat-label>
+          <mat-select (selectionChange)="selectVehicle(cop.name, $event.value)">
+            <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle.type">
+              {{ vehicle.type }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <button mat-raised-button color="primary" (click)="capture()">Capture</button>
+</div>
